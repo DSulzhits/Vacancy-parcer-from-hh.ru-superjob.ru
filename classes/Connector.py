@@ -1,4 +1,5 @@
 import json
+from engine_classes import HH, SuperJob
 
 
 class Connector:
@@ -31,6 +32,27 @@ class Connector:
     #     self.HH = HH
     #     self.SuperJob = SuperJob
 
+    def connect(self):
+        """
+        Проверка на существование файла с данными и
+        создание его при необходимости
+        Также проверить на деградацию и возбудить исключение
+        если файл потерял актуальность в структуре данных
+        """
+        try:
+            with open("hh_ru.json", encoding='utf-8') as file:
+                self.vacancies_hh = json.load(file)
+        except FileNotFoundError:
+            print("Файл не найден создаю новый файл")
+            HH("python").get_request()
+
+        try:
+            with open("sj_ru.json", encoding='utf-8') as file:
+                self.vacancies_sj = json.load(file)
+        except FileNotFoundError:
+            print("Файл не найден создаю новый файл")
+            SuperJob("python").get_request()
+
     def insert(self, data):
         """
         Запись данных в файл с сохранением структуры и исходных данных
@@ -38,29 +60,17 @@ class Connector:
         pass
 
     def select(self):
-        """
-        Выбор данных из файла с применением фильтрации
-        query содержит словарь, в котором ключ это поле для
-        фильтрации, а значение это искомое значение, например:
-        {'price': 1000}, должно отфильтровать данные по полю price
-        и вернуть все строки, в которых цена 1000
-        """
 
-        HH_info = []
-        SJ_info = []
-        with open("hh_ru.json", encoding='utf-8') as file:
-            vacancies = json.load(file)
-            for vacancy in vacancies:
-                HH_info.append([vacancy['name'], vacancy['url'], vacancy['requirement'], vacancy['salary_from'],
-                                vacancy['salary_to']])
+        hh_info = []
+        sj_info = []
 
-        with open("sj_ru.json", encoding='utf-8') as file:
-            vacancies = json.load(file)
-            for vacancy in vacancies:
-                SJ_info.append([vacancy['name'], vacancy['url'], vacancy['requirement'], vacancy['salary_from'],
-                                vacancy['salary_to']])
+        for vacancy in self.vacancies_hh:
+            hh_info.append(vacancy)
 
-        return HH_info, SJ_info
+        for vacancy in self.vacancies_sj:
+            sj_info.append(vacancy)
+
+        return hh_info, sj_info
 
     def delete(self, query):
         """
@@ -69,7 +79,6 @@ class Connector:
         функция удаления не сработает
         """
         pass
-
 
 # if __name__ == '__main__':
 #     df = Connector('df.json')
@@ -83,6 +92,9 @@ class Connector:
 #     df.delete({'id':1})
 #     data_from_file = df.select(dict())
 #     assert data_from_file == []
-
-con = Connector()
-print(con.select())
+#
+# con = Connector()
+# con.connect()
+# hh, sj = con.select()
+# print(hh)
+# print(sj)
