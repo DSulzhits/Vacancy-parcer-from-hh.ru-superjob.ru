@@ -9,29 +9,6 @@ class Connector:
     внешнего деградации
     """
 
-    # __data_file = None
-    # @property
-    # def data_file(self):
-    #     pass
-    #
-    # @data_file.setter
-    # def data_file(self, value):
-    #     # тут должен быть код для установки файла
-    #     self.__connect()
-    #
-    # def __connect(self):
-    #     """
-    #     Проверка на существование файла с данными и
-    #     создание его при необходимости
-    #     Также проверить на деградацию и возбудить исключение
-    #     если файл потерял актуальность в структуре данных
-    #     """
-    #     pass
-
-    # def __init__(self, HH, SuperJob):
-    #     self.HH = HH
-    #     self.SuperJob = SuperJob
-
     def connect(self):
         """
         Проверка на существование файла с данными и
@@ -71,30 +48,3 @@ class Connector:
             sj_info.append(vacancy)
 
         return hh_info, sj_info
-
-    def delete(self, query):
-        """
-        Удаление записей из файла, которые соответствуют запрос,
-        как в методе select. Если в query передан пустой словарь, то
-        функция удаления не сработает
-        """
-        pass
-
-# if __name__ == '__main__':
-#     df = Connector('df.json')
-#
-#     data_for_file = {'id': 1, 'title': 'tet'}
-#
-#     df.insert(data_for_file)
-#     data_from_file = df.select(dict())
-#     assert data_from_file == [data_for_file]
-#
-#     df.delete({'id':1})
-#     data_from_file = df.select(dict())
-#     assert data_from_file == []
-#
-# con = Connector()
-# con.connect()
-# hh, sj = con.select()
-# print(hh)
-# print(sj)
