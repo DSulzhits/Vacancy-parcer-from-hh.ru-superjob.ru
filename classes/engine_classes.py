@@ -102,9 +102,3 @@ class SuperJob(Engine):
 
         with open('sj_ru.json', 'w', encoding='UTF-8') as file:
             json.dump(vacancies_dicts, file, indent=2, ensure_ascii=False)
-
-
-hh = HH("Python developer")
-hh.get_request()
-sj = SuperJob("Python developer")
-sj.get_request()
