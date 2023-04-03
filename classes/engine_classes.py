@@ -37,18 +37,21 @@ class HH(Engine):
                 return "Нет вакансий"
             else:
                 for vacancy in range(20):
-                    if info['items'][vacancy]['salary']["from"] is not None and info['items'][vacancy]['salary']["currency"] == "RUR":
+                    if info['items'][vacancy]['salary'] is not None \
+                            and info['items'][vacancy]['salary']['currency'] == "RUR":
                         vacancies.append([info['items'][vacancy]['name'], info['items'][vacancy]['apply_alternate_url'],
                                           info['items'][vacancy]['snippet']['requirement'],
-                                          info['items'][vacancy]['salary']])
+                                          info['items'][vacancy]['salary']['from'],
+                                          info['items'][vacancy]['salary']['to']])
         for vacancy in vacancies:
-            vacancy_dict = {'name': vacancy[0], 'url': vacancy[1], 'requirement': vacancy[2], 'salary': vacancy[3]}
+            vacancy_dict = {'name': vacancy[0], 'url': vacancy[1], 'requirement': vacancy[2], 'salary_from': vacancy[3],
+                            'salary_to': vacancy[4]}
             vacancies_dicts.append(vacancy_dict)
 
         with open('hh_ru.json', 'w', encoding='UTF-8') as file:
             json.dump(vacancies_dicts, file, indent=2, ensure_ascii=False)
-
         return vacancies_dicts
+
         # return info
 
 
@@ -77,20 +80,15 @@ class SuperJob(Engine):
             if info['objects'][0]['payment_from'] is not None and info['objects'][0]['currency'] == "rub":
                 vacancies.append(
                     [info['objects'][0]['profession'], info['objects'][0]['link'], info['objects'][0]['candidat'],
-                     info['objects'][0]['payment_from']])
+                     info['objects'][0]['payment_from'], info['objects'][0]['payment_to']])
 
         for vacancy in vacancies:
-            vacancy_dict = {'name': vacancy[0], 'url': vacancy[1], 'requirement': vacancy[2], 'salary': vacancy[3]}
+            vacancy_dict = {'name': vacancy[0], 'url': vacancy[1], 'requirement': vacancy[2], 'salary_from': vacancy[3],
+                            'salary_to': vacancy[4]}
             vacancies_dicts.append(vacancy_dict)
 
         with open('sj_ru.json', 'w', encoding='UTF-8') as file:
             json.dump(vacancies_dicts, file, indent=2, ensure_ascii=False)
-
-
-
-        print(vacancies_dicts)
-
-        pass
 
 
 # {'objects': [
@@ -139,6 +137,6 @@ class SuperJob(Engine):
 
 hh = HH("Python разработчик")
 hh.get_request()
-# sj = SuperJob("Python разработчик")
+sj = SuperJob("Python разработчик")
 # print(sj.api_key)
-# sj.get_request()
+sj.get_request()
