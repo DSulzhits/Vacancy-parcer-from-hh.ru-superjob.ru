@@ -9,7 +9,7 @@ class Connector:
     внешнего деградации
     """
 
-    def connect(self):
+    def connectHH(self):
         """
         Проверка на существование файла с данными и
         создание его при необходимости
@@ -23,6 +23,7 @@ class Connector:
             print("Файл не найден создаю новый файл")
             HH("python").get_request()
 
+    def connectSJ(self):
         try:
             with open("sj_ru.json", encoding='utf-8') as file:
                 self.vacancies_sj = json.load(file)
@@ -36,15 +37,18 @@ class Connector:
         """
         pass
 
-    def select(self):
-
+    def select_HH(self):
         hh_info = []
-        sj_info = []
 
         for vacancy in self.vacancies_hh:
             hh_info.append(vacancy)
 
+        return hh_info
+
+    def select_SJ(self):
+        sj_info = []
+
         for vacancy in self.vacancies_sj:
             sj_info.append(vacancy)
 
-        return hh_info, sj_info
+        return sj_info
