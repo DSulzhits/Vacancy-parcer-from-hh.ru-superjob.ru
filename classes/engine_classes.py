@@ -29,6 +29,7 @@ class HH(Engine):
             params = {'text': {self.vacancy}, "areas": 113, 'per_page': 20, 'page': num}
             response = requests.get(url, params=params)
             info = response.json()
+            print(info)
             if info is None:
                 return "Данные не получены"
             elif 'errors' in info:
@@ -39,13 +40,14 @@ class HH(Engine):
                 for vacancy in range(20):
                     if info['items'][vacancy]['salary'] is not None \
                             and info['items'][vacancy]['salary']['currency'] == "RUR":
-                        vacancies.append([info['items'][vacancy]['name'], info['items'][vacancy]['apply_alternate_url'],
+                        vacancies.append([info['items'][vacancy]['employer']['name'],
+                            info['items'][vacancy]['name'], info['items'][vacancy]['apply_alternate_url'],
                                           info['items'][vacancy]['snippet']['requirement'],
                                           info['items'][vacancy]['salary']['from'],
                                           info['items'][vacancy]['salary']['to']])
         for vacancy in vacancies:
-            vacancy_dict = {'name': vacancy[0], 'url': vacancy[1], 'requirement': vacancy[2], 'salary_from': vacancy[3],
-                            'salary_to': vacancy[4]}
+            vacancy_dict = {'employer': vacancy[0], 'name': vacancy[1], 'url': vacancy[2], 'requirement': vacancy[3], 'salary_from': vacancy[4],
+                            'salary_to': vacancy[5]}
             vacancies_dicts.append(vacancy_dict)
 
         with open('hh_ru.json', 'w', encoding='UTF-8') as file:
@@ -140,3 +142,26 @@ hh.get_request()
 sj = SuperJob("Python разработчик")
 # print(sj.api_key)
 sj.get_request()
+
+# {'items': [{'id': '78473911', 'premium': False, 'name': 'Разработчик Python', 'department': None, 'has_test': False,
+#             'response_letter_required': False,
+#             'area': {'id': '1', 'name': 'Москва', 'url': 'https://api.hh.ru/areas/1'},
+#             'salary': {'from': 200000, 'to': 250000, 'currency': 'RUR', 'gross': False},
+#             'type': {'id': 'open', 'name': 'Открытая'}, 'address': {'city': 'Москва',
+#                                                                     'street': 'Западный административный округ, Можайский район, Инновационный центр Сколково, Большой бульвар',
+#                                                                     'building': '42с1', 'lat': 55.692318,
+#                                                                     'lng': 37.347485, 'description': None,
+#                                                                     'raw': 'Москва, Западный административный округ, Можайский район, Инновационный центр Сколково, Большой бульвар, 42с1',
+#                                                                     'metro': None, 'metro_stations': [],
+#                                                                     'id': '12747719'}, 'response_url': None,
+#             'sort_point_distance': None, 'published_at': '2023-04-01T18:26:21+0300',
+#             'created_at': '2023-04-01T18:26:21+0300', 'archived': False,
+#             'apply_alternate_url': 'https://hh.ru/applicant/vacancy_response?vacancyId=78473911',
+#             'insider_interview': None, 'url': 'https://api.hh.ru/vacancies/78473911?host=hh.ru',
+#             'adv_response_url': None, 'alternate_url': 'https://hh.ru/vacancy/78473911', 'relations': [],
+#             'employer': {'id': '9580359', 'name': 'Нетопия', 'url': 'https://api.hh.ru/employers/9580359',
+#                          'alternate_url': 'https://hh.ru/employer/9580359',
+#                          'logo_urls': {'original': 'https://hhcdn.ru/employer-logo-original/1058924.png',
+#                                        '90': 'https://hhcdn.ru/employer-logo/5856337.png',
+#                                        '240': 'https://hhcdn.ru/employer-logo/5856338.png'},
+#                          'vacancies_url': 'https://api.hh.ru/vacancies?employer_id=9580359', 'trusted': True},
