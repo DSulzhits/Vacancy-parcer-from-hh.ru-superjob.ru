@@ -1,7 +1,7 @@
 from classes.Connector import Connector
 from classes.jobs_classes import Vacancy, sorting, get_top
 
-
+"""Рекомендую вводить что-то более конкретное чем Python, а то там 1 сплошной Яндекс"""
 def main():
     user_input = input("""На каком ресурсе хотите осуществить поиск:
 HeadHunter нажмите 1
