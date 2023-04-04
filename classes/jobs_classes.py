@@ -1,24 +1,30 @@
-from Connector import Connector
+from classes.Connector import Connector
 
 
 class Vacancy:
-    __slots__ = ('employer', 'title', 'link', 'description', 'salary_from', 'salary_to')
+    __slots__ = ('employer', 'name', 'url', 'requirement', 'salary_from', 'salary_to')
 
-    def __init__(self, employer=None, title=None, link=None, description=None, salary_from=None, salary_to=None):
+    def __init__(self, employer=None, name=None, url=None, requirement=None, salary_from=None, salary_to=None):
         self.employer = employer
-        self.title = title
-        self.link = link
-        self.description = description
+        self.name = name
+        self.url = url
+        self.requirement = requirement
+        try:
+            if "<highlighttext>" and "</highlighttext>" in self.requirement:
+                self.requirement = self.requirement.replace("<highlighttext>", "")
+                self.requirement = self.requirement.replace("</highlighttext>", "")
+        except TypeError:
+            self.requirement = requirement
         self.salary_from = salary_from
         self.salary_to = salary_to
 
     def __str__(self):
         return f"""
         Наниматель: {self.employer}
-        Вакансия: {self.title}
-        Описание/Требования: {self.description}
+        Вакансия: {self.name}
+        Описание/Требования: {self.requirement}
         Заработная плата от {self.salary_from}, до {self.salary_to}
-        Ссылка на вакансию: {self.link}"""
+        Ссылка на вакансию: {self.url}"""
 
 
 class CountMixin:
@@ -29,7 +35,7 @@ class CountMixin:
         Вернуть количество вакансий от текущего сервиса.
         Получать количество необходимо динамически из файла.
         """
-        hh, sj = Connector.select()
+        hh = Connector().select_HH()
         return len(hh)
 
     @property
@@ -38,28 +44,28 @@ class CountMixin:
         Вернуть количество вакансий от текущего сервиса.
         Получать количество необходимо динамически из файла.
         """
-        hh, sj = Connector.select()
+        sj = Connector().select_SJ()
         return len(sj)
 
 
-class HHVacancy(CountMixin, Vacancy):  # add counter mixin
-    """ HeadHunter Vacancy """
-
-    def get_count_of_vacancy_HH(self):
-        return super().get_count_of_vacancy_HH
-
-    def __str__(self):
-        return f'HH: {self.employer}, зарплата от {self.salary_from}, до {self.salary_to} руб/мес'
-
-
-class SJVacancy(CountMixin, Vacancy):  # add counter mixin
-    """ SuperJob Vacancy """
-
-    def get_count_of_vacancy_SJ(self):
-        return super().get_count_of_vacancy_SJ
-
-    def __str__(self):
-        return f'SJ: {self.employer}, зарплата от {self.salary_from}, до {self.salary_to} руб/мес'
+# class HHVacancy(CountMixin, Vacancy):  # add counter mixin
+#     """ HeadHunter Vacancy """
+#
+#     def get_count_of_vacancy_HH(self):
+#         return super().get_count_of_vacancy_HH
+#
+#     def __str__(self):
+#         return f'HH: {self.employer}, зарплата от {self.salary_from}, до {self.salary_to} руб/мес'
+#
+#
+# class SJVacancy(CountMixin, Vacancy):  # add counter mixin
+#     """ SuperJob Vacancy """
+#
+#     def get_count_of_vacancy_SJ(self):
+#         return super().get_count_of_vacancy_SJ
+#
+#     def __str__(self):
+#         return f'SJ: {self.employer}, зарплата от {self.salary_from}, до {self.salary_to} руб/мес'
 
 
 def sorting(vacancies):
