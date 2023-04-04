@@ -9,6 +9,9 @@ class Connector:
     внешнего деградации
     """
 
+    def __init__(self, vacancy):
+        self.vacancy = vacancy
+
     def connectHH(self):
         """
         Проверка на существование файла с данными и
@@ -17,19 +20,19 @@ class Connector:
         если файл потерял актуальность в структуре данных
         """
         try:
-            with open("hh_ru.json", encoding='utf-8') as file:
+            with open(f'{self.vacancy}_hh_ru.json', encoding='utf-8') as file:
                 self.vacancies_hh = json.load(file)
         except FileNotFoundError:
             print("Файл не найден создаю новый файл")
-            HH("python").get_request()
+            self.vacancies_hh = HH(self.vacancy).get_request()
 
     def connectSJ(self):
         try:
-            with open("sj_ru.json", encoding='utf-8') as file:
+            with open(f'{self.vacancy}_sj_ru.json', encoding='utf-8') as file:
                 self.vacancies_sj = json.load(file)
         except FileNotFoundError:
             print("Файл не найден создаю новый файл")
-            SuperJob("python").get_request()
+            self.vacancies_sj = SuperJob(self.vacancy).get_request()
 
     def insert(self, data):
         """
