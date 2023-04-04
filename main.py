@@ -6,22 +6,40 @@ from classes.engine_classes import HH, SuperJob
 def main():
     user_input = input("""На каком ресурсе хотите осуществить поиск:
 HeadHunter нажмите 1
-SuperJob нажмите 2\n""").lower()
+SuperJob нажмите 2
+Выход нажмите 0\n""").lower()
+    while user_input not in ["1", "2", "0"]:
+        print("Введите 1 для HeadHunter, 2 для  SuperJob, 0 для выхода")
+        user_input = input()
+    if user_input == "0":
+        print("Программа закончила работу")
+        quit()
     user_prof = input("""Введите желаемую специальность\n""")
     vacancies = None
     if user_input == "1":
         hh = HH(user_prof)
-        hh.get_request()
+        try:
+            hh.get_request()
+        except IndexError:
+            print("Cпециальность не найдена")
+            quit()
         con = Connector()
         con.connectHH()
         vacancies = con.select_HH()
         print(f"Всего вакансий ")
     elif user_input == "2":
         sj = SuperJob(user_prof)
-        sj.get_request()
+        try:
+            sj.get_request()
+        except IndexError:
+            print("Cпециальность не найдена")
+            quit()
         con = Connector()
         con.connectSJ()
         vacancies = con.select_SJ()
+    else:
+        print("Благодарим, что воспользовались нашим сервисом")
+        quit()
     for vacancy in vacancies:
         vacancy_class = Vacancy(vacancy['employer'], vacancy['name'], vacancy['url'], vacancy['requirement'],
                                 vacancy['salary_from'], vacancy['salary_to'])
