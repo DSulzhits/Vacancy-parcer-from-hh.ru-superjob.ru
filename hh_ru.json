@@ -1,0 +1,138 @@
+[
+  {
+    "employer": "Нетопия",
+    "name": "Разработчик Python",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78473911",
+    "requirement": "Владение <highlighttext>Python</highlighttext> (asyncio, aiohttp, pydantic, FastAPI). Опыт работы с рекурсиям, алгоритмами на деревьях (важно!). Понимание зачем нужен ООП. ",
+    "salary_from": 200000,
+    "salary_to": 250000
+  },
+  {
+    "employer": "Радиум",
+    "name": "Backend программист Python / Python Backend Developer",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78542200",
+    "requirement": "Хорошее знание языка программирования <highlighttext>Python</highlighttext>. Знание SQL (PostgreSQL) на среднем уровне. Навык самостоятельного поиска информации и готовых решений. ",
+    "salary_from": 50000,
+    "salary_to": 50000
+  },
+  {
+    "employer": "Единая Информационная Система ЖКХ",
+    "name": "Разработчик Python",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=77871173",
+    "requirement": "Хорошие знания <highlighttext>Python</highlighttext> 3.6+, Django, Django REST Framework. Навык работы с Git. Умение разбираться в чужом коде. ",
+    "salary_from": 90000,
+    "salary_to": 150000
+  },
+  {
+    "employer": "Фабрика Решений",
+    "name": "Python-разработчик (Django, DRF)",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=70705466",
+    "requirement": "Опыт разработки сложных проектов. Обязателен опыт работы с django 2.*, <highlighttext>python</highlighttext> 3.7, djangorestframework. Знание SQL (в частности, PostgreSQL) и...",
+    "salary_from": 60000,
+    "salary_to": 220000
+  },
+  {
+    "employer": "ФинТех",
+    "name": "Разработчик Python",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78823037",
+    "requirement": "Уверенное знание <highlighttext>Python</highlighttext> 3. Уверенное знание ОС GNU/Linux. Опыт работы в команде (git). Опыт работы с SQLAlchemy. ",
+    "salary_from": 150000,
+    "salary_to": 150000
+  },
+  {
+    "employer": "Чабурко Александр Сергеевич",
+    "name": "Python разработчик",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=77723429",
+    "requirement": "<highlighttext>Python</highlighttext>, MongoDB, Docker Compose, Rest API. Aiogram, Asyncio.",
+    "salary_from": 100000,
+    "salary_to": 150000
+  },
+  {
+    "employer": "X-LAB",
+    "name": "Python разработчик",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78707642",
+    "requirement": "Опыт коммерческой разработки от 3 лет. Уровень не ниже сильного middle или senior. Коммерческий опыт работы с асинхронными фреймворками. ",
+    "salary_from": 150000,
+    "salary_to": 150000
+  },
+  {
+    "employer": "Перфект Системс",
+    "name": "Python Backend Developer / WEB - разработчик",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=72216524",
+    "requirement": "Знание возможностей <highlighttext>Python</highlighttext> и экосистемы <highlighttext>Python</highlighttext> (модули, IDE, shell & bash). Опыт настройки среды Linux / Unix с помощью инструментов <highlighttext>Python</highlighttext>. ",
+    "salary_from": 300000,
+    "salary_to": 450000
+  },
+  {
+    "employer": "getmatch",
+    "name": "Python-разработчик",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78814000",
+    "requirement": "...коммерческого опыта на <highlighttext>Python</highlighttext> – для позиции middle, от 3-4 лет для позиции Senior + есть роль <highlighttext>Python</highlighttext> Lead. ",
+    "salary_from": 0,
+    "salary_to": 450000
+  },
+  {
+    "employer": "Этерон",
+    "name": "Программист Python",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78461798",
+    "requirement": "Понимание принципов ООП, ООА и ООД. Опыт программирования на языке <highlighttext>Python</highlighttext>. Oпыт работы с базами данных, знание основ SQL. ",
+    "salary_from": 60000,
+    "salary_to": 120000
+  },
+  {
+    "employer": "Дубайт",
+    "name": "Разработчик C# / Python",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=71147348",
+    "requirement": "Опыт разработки приложений на базе С# под .NET Core от 3 лет. Опыт работы с <highlighttext>Python</highlighttext> 3 (numpy, pandas, sklearn...",
+    "salary_from": 300000,
+    "salary_to": 500000
+  },
+  {
+    "employer": "БО-ЭНЕРГО",
+    "name": "Программист Python",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78853485",
+    "requirement": "Знания и опыт работы с <highlighttext>Python</highlighttext> (Django/Flask, FastAPI). Опыт работы с разными форматами хранения данных (JSON, XML). ",
+    "salary_from": 130000,
+    "salary_to": 130000
+  },
+  {
+    "employer": "Вайт Код",
+    "name": "Python developer (Middle+)",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78661254",
+    "requirement": "Навыки, которые необходимы: Отличные знания <highlighttext>Python</highlighttext>. Разнообразный опыт работы с asyncio, aiohttp. Большой опыт разработки высоконагруженных и распределенных систем. ",
+    "salary_from": 300000,
+    "salary_to": 360000
+  },
+  {
+    "employer": "Сеть салонов Caterina Leman",
+    "name": "Программист Python",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=77956088",
+    "requirement": "Уверенный пользователь языка <highlighttext>Python</highlighttext>. Приветствуется знание Django Framework, PostqreSQL. Коммуникабельность, активность.",
+    "salary_from": 100000,
+    "salary_to": 100000
+  },
+  {
+    "employer": "Kvando Technologies",
+    "name": "Python разработчик",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78016944",
+    "requirement": "Уверенное знание <highlighttext>Python</highlighttext>. Умение писать читабельный и оптимальный код. Понимание принципов ООП. Знание основных паттернов программирования. Будет плюсом, если есть...",
+    "salary_from": 25000,
+    "salary_to": 25000
+  },
+  {
+    "employer": "Enjoypro",
+    "name": "Программист Python (Django)",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78665689",
+    "requirement": "Опыт разработки прикладного ПО на <highlighttext>Python</highlighttext>3 в парадигме ООП не менее 3-х лет. Фреймворк Django/Flask. ",
+    "salary_from": 160000,
+    "salary_to": 180000
+  },
+  {
+    "employer": "Skyeng",
+    "name": "Наставник курсов по Python разработке",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=76767074",
+    "requirement": "Есть опыт работы <highlighttext>Python</highlighttext> разработчиком. Есть опыт работы с фреймворками Django и Flask. Есть опыт работы на Linux и с...",
+    "salary_from": 60000,
+    "salary_to": 100000
+  }
+]
