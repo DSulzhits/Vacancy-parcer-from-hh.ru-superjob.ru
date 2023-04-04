@@ -1,7 +1,9 @@
 from classes.Connector import Connector
+import json
 
 
 class Vacancy:
+    """Класс для работы с полученными данными из .json файла"""
     __slots__ = ('employer', 'name', 'url', 'requirement', 'salary_from', 'salary_to')
 
     def __init__(self, employer=None, name=None, url=None, requirement=None, salary_from=None, salary_to=None):
@@ -27,25 +29,25 @@ class Vacancy:
         Ссылка на вакансию: {self.url}"""
 
 
-class CountMixin:
-
-    @property
-    def get_count_of_vacancy_HH(self):
-        """
-        Вернуть количество вакансий от текущего сервиса.
-        Получать количество необходимо динамически из файла.
-        """
-        hh = Connector().select_HH()
-        return len(hh)
-
-    @property
-    def get_count_of_vacancy_SJ(self):
-        """
-        Вернуть количество вакансий от текущего сервиса.
-        Получать количество необходимо динамически из файла.
-        """
-        sj = Connector().select_SJ()
-        return len(sj)
+# class CountMixin:
+#
+#     @property
+#     def get_count_of_vacancy_HH(self):
+#         """
+#         Вернуть количество вакансий от текущего сервиса.
+#         Получать количество необходимо динамически из файла.
+#         """
+#         hh = Connector().select_HH()
+#         return len(hh)
+#
+#     @property
+#     def get_count_of_vacancy_SJ(self):
+#         """
+#         Вернуть количество вакансий от текущего сервиса.
+#         Получать количество необходимо динамически из файла.
+#         """
+#         sj = Connector().select_SJ()
+#         return len(sj)
 
 
 # class HHVacancy(CountMixin, Vacancy):  # add counter mixin
@@ -69,7 +71,8 @@ class CountMixin:
 
 
 def sorting(vacancies):
-    """ Должен сортировать любой список вакансий по ежемесячной оплате (gt, lt magic methods) """
+    """ Сортирует полученные вакансии исходя из зарплаты от:
+    создает .json файл для проверки работы (чтобы не копаться в консоли)"""
     vacancies_list = []
     vacancies_sort = sorted(vacancies, key=lambda vacancy: vacancy["salary_from"], reverse=True)
     for vacancy in vacancies_sort:
@@ -79,11 +82,14 @@ def sorting(vacancies):
         Описание/Требования: {vacancy['requirement']}
         Заработная плата от {vacancy['salary_from']}, до {vacancy['salary_to']}
         Ссылка на вакансию: {vacancy['url']}""")
+    with open(f'sort.json', 'w', encoding='UTF-8') as file:
+        json.dump(vacancies_sort, file, indent=2, ensure_ascii=False)
     return vacancies_list
 
 
 def get_top(vacancies, top_count):
-    """ Должен возвращать {top_count} записей из вакансий по зарплате (iter, next magic methods) """
+    """ Возвращает полученный топ вакансий по запросу, исходя из зарплаты от:
+       создает .json файл для проверки работы (чтобы не копаться в консоли)"""
     top_list = []
     vacancies_sort = sorted(vacancies, key=lambda vacancy: vacancy["salary_from"], reverse=True)
     top_vacancies = vacancies_sort[0:top_count]
@@ -94,4 +100,6 @@ def get_top(vacancies, top_count):
           Описание/Требования: {vacancy['requirement']}
           Заработная плата от {vacancy['salary_from']}, до {vacancy['salary_to']}
           Ссылка на вакансию: {vacancy['url']}""")
+    with open(f'top.json', 'w', encoding='UTF-8') as file:
+        json.dump(top_vacancies, file, indent=2, ensure_ascii=False)
     return top_list
