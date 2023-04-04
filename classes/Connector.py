@@ -1,5 +1,5 @@
 import json
-from engine_classes import HH, SuperJob
+from classes.engine_classes import HH, SuperJob
 
 
 class Connector:
