@@ -1,6 +1,5 @@
 from classes.Connector import Connector
 from classes.jobs_classes import Vacancy, sorting, get_top
-from classes.engine_classes import HH, SuperJob
 
 
 def main():
@@ -14,32 +13,28 @@ SuperJob нажмите 2
     if user_input == "0":
         print("Программа закончила работу")
         quit()
-    user_prof = input("""Введите желаемую специальность\n""")
+    user_prof = input("""Введите желаемую специальность 
+(выдает только те специальности где указана заработная плата в рублях)\n""").lower()
     vacancies = None
+    con = Connector(user_prof)
     if user_input == "1":
-        hh = HH(user_prof)
         try:
-            hh.get_request()
+            con.connectHH()
         except IndexError:
             print("Cпециальность не найдена")
             quit()
-        con = Connector()
-        con.connectHH()
         vacancies = con.select_HH()
-        print(f"Всего вакансий ")
     elif user_input == "2":
-        sj = SuperJob(user_prof)
         try:
-            sj.get_request()
+            con.connectSJ()
         except IndexError:
             print("Cпециальность не найдена")
             quit()
-        con = Connector()
-        con.connectSJ()
         vacancies = con.select_SJ()
     else:
         print("Благодарим, что воспользовались нашим сервисом")
         quit()
+    print(f"Всего найдено вакансий {len(vacancies)}")
     for vacancy in vacancies:
         vacancy_class = Vacancy(vacancy['employer'], vacancy['name'], vacancy['url'], vacancy['requirement'],
                                 vacancy['salary_from'], vacancy['salary_to'])
